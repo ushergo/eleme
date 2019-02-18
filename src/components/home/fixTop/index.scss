@@ -1,0 +1,35 @@
+
+/*吸顶盒*/
+.fix_top {
+  /**
+   sticky 没有被纳入到标准内
+   可以在移动端使用
+   top: 0
+   bottom: 0
+   让他的父级产生滚动条，且有overflow:visible
+   */
+  position: sticky;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  height: 1.86rem;
+  background: #00a7ff;
+  display: flex;
+  justify-content: center; /*水平居中*/
+  align-items: center; /*垂直居中*/
+  a {
+    width: 6.94rem;
+    height: .72rem;
+    color: #999;
+    background: #ffffff;
+    display: inherit;
+    justify-content: center; /*水平居中,space-between：两端对齐*/
+    align-items: inherit;
+    span {
+      margin-left: .1rem;
+      font-size: .26rem;
+    }
+
+  }
+
+}

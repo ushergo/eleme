@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/*瀹氫綅*/
+.location {
+  padding-top: .24rem;
+  background: #00a7ff; }
+  .location .sub {
+    height: .62rem;
+    text-indent: 1em; }
+    .location .sub span {
+      display: inline-block;
+      color: #fff;
+      font-size: .35rem; }
+    .location .sub .info {
+      font-weight: bold; }
+
+/*# sourceMappingURL=index.css.map */

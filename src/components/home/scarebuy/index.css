@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/*鎶㈣喘*/
+.scarebuy {
+  height: 2.79rem;
+  display: flex;
+  justify-content: space-between; }
+  .scarebuy a img {
+    width: 3.52rem;
+    height: 2.79rem; }
+
+/*# sourceMappingURL=index.css.map */

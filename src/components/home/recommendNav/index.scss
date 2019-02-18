@@ -1,0 +1,22 @@
+/*导航菜单*/
+ul.recommendNav {
+  position: sticky;
+  top: 1.86rem; /*距离顶部高度为fixTop吸顶盒的高度*/
+  bottom: 0;
+  z-index: 998;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  margin-bottom:-0.01rem;
+  width: 100%;
+  display: flex;
+  color: #666;
+  li {
+    flex: 1; /* 均分父级容器*/
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    border: 1px;
+    text-align: center;
+    color: #666;
+  }
+}

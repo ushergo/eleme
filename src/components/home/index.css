@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.App {
+  height: 500rem;
+  overflow: visible; }
+
+/*----鎺ㄨ崘begin*/
+/*鍥炬爣 */
+.recommendIcon {
+  width: 3.12rem;
+  height: .72rem;
+  margin: auto; }
+  .recommendIcon img {
+    width: 100%;
+    height: 100%; }
+
+/*----鎺ㄨ崘end*/
+
+/*# sourceMappingURL=index.css.map */

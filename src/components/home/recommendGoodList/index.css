@@ -1,0 +1,44 @@
+/*
+Error: Invalid GBK character "\xE5"
+        on line 4 of index.scss
+
+1: .recommend {
+2:   width: 100%;
+3:   height: .72rem;
+4:   /*商品列表*\/
+5:   .good_list {
+6:     ul {
+7:       li{
+8:         a{ color: inherit; }
+9:         .item {
+
+Backtrace:
+index.scss:4
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/util.rb:1041:in `rescue in block in find_encoding_error'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/util.rb:1038:in `block in find_encoding_error'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/util.rb:1037:in `each'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/util.rb:1037:in `each_with_index'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/util.rb:1037:in `find_encoding_error'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/util.rb:771:in `rescue in check_sass_encoding'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/util.rb:767:in `check_sass_encoding'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/engine.rb:444:in `check_encoding!'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/engine.rb:400:in `_to_tree'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/engine.rb:307:in `render_with_sourcemap'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:209:in `each'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/plugin.rb:82:in `update_stylesheets'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/exec/sass_scss.rb:338:in `watch_or_update'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/exec/sass_scss.rb:51:in `process_result'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/exec/base.rb:50:in `parse'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/lib/sass/exec/base.rb:18:in `parse!'
+F:/develope/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.6.0/bin/scss:13:in `<top (required)>'
+F:/develope/Ruby24-x64/bin/scss:23:in `load'
+F:/develope/Ruby24-x64/bin/scss:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid GBK character \"\xE5\"\A         on line 4 of index.scss\A \A 1: .recommend {\A 2:   width: 100%;\A 3:   height: .72rem;\A 4:   /*商品列表*/\A 5:   .good_list {\A 6:     ul {\A 7:       li{\A 8:         a{ color: inherit; }\A 9:         .item {"; }
