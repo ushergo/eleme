@@ -28,6 +28,15 @@ class CategoryList extends Component {
         return this.state.cate[id]
     }
 
+    loadMore= ()=>{
+        Axios.get('http://47.100.98.54:9019/api/category/list'+this.props.match.params.id).then((res)=>{
+            console.log(res.data.data)
+            this.setState({
+                list:this.state.list.concat(res.data.data)
+            })
+        })
+    }
+
     render() {
         return (
             <div className={'categoryList'}>
@@ -64,7 +73,7 @@ class CategoryList extends Component {
 
                 {/*商品列表*/}
                 {
-                    this.state.list.length>0 &&  <RecommendGoodList list = {this.state.list}/>
+                    this.state.list.length>0 &&  <RecommendGoodList loadMore={this.loadMore} list = {this.state.list}/>
                 }
 
             </div>

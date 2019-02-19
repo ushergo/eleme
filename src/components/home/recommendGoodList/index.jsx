@@ -4,14 +4,29 @@ import {Link} from 'react-router-dom'
 import './index.scss'
 
 class RecommendGoodList extends Component {
-    state={
-        list:[]
+    state = {
+        list:  this.props.list
     }
+
     componentDidMount() {
-        console.log(this.props.list);
+        window.addEventListener('scroll', this.loadMore)
+    }
+    componentWillReceiveProps(nextProps) {
         this.setState({
-            list:this.props.list
+            list: nextProps.list
         })
+    }
+    loadMore = () => {
+        //获取加载更多元素的top值
+        let element = this.refs.loadMore
+        if (element) {
+            let top = element.getBoundingClientRect().top
+            console.log("top:",top);
+            console.log("height:",window.screen.height);
+            let windowHeight =  window.screen.height;
+            if (top < windowHeight)
+                this.props.loadMore()
+        }
     }
 
     render() {
@@ -21,10 +36,10 @@ class RecommendGoodList extends Component {
                 <div className={'good_list'}>
                     <ul>
                         {
-                            this.state.list  &&  this.state.list.map((item,index)=>{
-                                return(
+                            this.state.list && this.state.list.map((item, index) => {
+                                return (
                                     <li>
-                                        <Link to={'/goodListSub/'+index}>
+                                        <Link to={'/goodListSub/' + index}>
                                             <div className={'item'}>
                                                 <div className={'logo'}>
                                                     <img src={item.img}/>
@@ -41,9 +56,9 @@ class RecommendGoodList extends Component {
                                                             月售{item.monthSaleCount}单
                                                         </div>
                                                         <div className={'delivery'}>
-                                                            {item.labels.map((item,index)=>{
-                                                                return(
-                                                                  <span key={index}>{item.name}</span>
+                                                            {item.labels.map((item, index) => {
+                                                                return (
+                                                                    <span key={index}>{item.name}</span>
                                                                 )
                                                             })}
                                                         </div>
@@ -57,7 +72,7 @@ class RecommendGoodList extends Component {
                                                         <div className={'right'}>
                                                             <span className={'start_distance'}>
                                                                 {
-                                                                    item.range>1000? (item.range/1000).toFixed(2)+"km":  item.range+"m"
+                                                                    item.range > 1000 ? (item.range / 1000).toFixed(2) + "km" : item.range + "m"
                                                                 }</span>
                                                             <span>{item.time}分钟</span>
                                                         </div>
@@ -70,9 +85,9 @@ class RecommendGoodList extends Component {
                                                     {/*折扣*/}
                                                     <div className={'discount'}>
                                                         {
-                                                            item.promotion.map((item,index)=>{
-                                                                let className = ["first","second"][index%2]
-                                                                return(
+                                                            item.promotion.map((item, index) => {
+                                                                let className = ["first", "second"][index % 2]
+                                                                return (
 
                                                                     <div className={className} key={index}>
                                                                         <span>{item.type.name}</span>
@@ -82,12 +97,12 @@ class RecommendGoodList extends Component {
                                                             })
                                                         }
                                                         {/*<div className={'first'}>*/}
-                                                            {/*<span>首</span>*/}
-                                                            {/*<span>新用户下单立马减16元</span>*/}
+                                                        {/*<span>首</span>*/}
+                                                        {/*<span>新用户下单立马减16元</span>*/}
                                                         {/*</div>*/}
                                                         {/*<div className={'second'}>*/}
-                                                            {/*<span>满</span>*/}
-                                                            {/*<span>满40减20，满20减10</span>*/}
+                                                        {/*<span>满</span>*/}
+                                                        {/*<span>满40减20，满20减10</span>*/}
                                                         {/*</div>*/}
                                                     </div>
                                                 </div>
@@ -97,13 +112,11 @@ class RecommendGoodList extends Component {
                                 )
                             })
                         }
-
-
+                        <div ref={'loadMore'}>加载更多...</div>
                     </ul>
                 </div>
             </div>
-        )
-            ;
+        );
     }
 }
 

@@ -10,8 +10,33 @@ import Promotion from "./promotion";
 import RecommendGoodList from "./recommendGoodList";
 import Footer from "../footer";
 import RecommendNav from "./recommendNav";
+import Axios from "axios";
 
 class Home extends Component {
+
+    state = {
+        list: []
+    }
+
+    componentDidMount() {
+        Axios.get('http://47.100.98.54:9019/api/shoplist').then((res) => {
+            console.log(res.data.data)
+            this.setState({
+                list: res.data.data
+            })
+        })
+    }
+
+    loadMore = () => {
+        Axios.get('http://47.100.98.54:9019/api/shoplist').then((res) => {
+            console.log(res.data.data)
+            this.setState({
+                list: this.state.list.concat(res.data.data)
+            })
+        })
+    }
+
+
     render() {
         return (
             <div className={'App'}>
@@ -30,10 +55,10 @@ class Home extends Component {
                     <img src={require('../../static/img/recommend/1.jpg')} alt=""/>
                 </div>
                 {/*导航*/}
-               <RecommendNav/>
+                <RecommendNav/>
 
                 {/*商品列表*/}
-                <RecommendGoodList/>
+                <RecommendGoodList loadMore={this.loadMore} list={this.state.list}/>
 
                 {/*底部导航*/}
                 <Footer/>
