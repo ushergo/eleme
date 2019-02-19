@@ -9,14 +9,18 @@ class RecommendGoodList extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.loadMore)
+        window.addEventListener('scroll', this.listenScroll)
     }
     componentWillReceiveProps(nextProps) {
         this.setState({
             list: nextProps.list
         })
     }
-    loadMore = () => {
+
+    componentWillMount() {
+        window.addEventListener('scroll',this.listenScroll)
+    }
+    listenScroll = () => {
         //获取加载更多元素的top值
         let element = this.refs.loadMore
         if (element) {
@@ -24,7 +28,7 @@ class RecommendGoodList extends Component {
             console.log("top:",top);
             console.log("height:",window.screen.height);
             let windowHeight =  window.screen.height;
-            if (top < windowHeight)
+            if (top && top < windowHeight)
                 this.props.loadMore()
         }
     }

@@ -27,7 +27,7 @@ class Home extends Component {
         })
     }
 
-    loadMore = () => {
+    loadMoreFn = () => {
         Axios.get('http://47.100.98.54:9019/api/shoplist').then((res) => {
             console.log(res.data.data)
             this.setState({
@@ -58,7 +58,7 @@ class Home extends Component {
                 <RecommendNav/>
 
                 {/*商品列表*/}
-                <RecommendGoodList loadMore={this.loadMore} list={this.state.list}/>
+                <RecommendGoodList loadMore={this.loadMoreFn} list={this.state.list}/>
 
                 {/*底部导航*/}
                 <Footer/>
