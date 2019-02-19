@@ -9,6 +9,7 @@ import ScareBuyList from "./components/home/scarebuy/scarebuyList";
 import Find from './components/find/index'
 import Mine from './components/mine'
 import GoodListSub from './components/home/goodListSub/index'
+import PromotionSub from "./components/home/promotionSub";
 
 class App extends Component {
     render() {
@@ -23,6 +24,7 @@ class App extends Component {
                         <Route path={'/find'} component={Find}/>
                         <Route path={'/mine'} component={Mine}/>
                         <Route path={'/goodListSub/:id'} component={GoodListSub}/>
+                        <Route path={'/promotionSub/:id'} component={PromotionSub}/>
                     </Switch>
                 </Layout>
             </Router>
