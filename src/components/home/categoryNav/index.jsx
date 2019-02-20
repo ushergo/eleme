@@ -13,7 +13,6 @@ class CategoryNav extends Component {
     componentDidMount() {
         Axios.get('http://47.100.98.54:9019/api/category')
             .then((res) => {
-                console.log(res.data)
                 this.setState({
                     category: res.data.data
                 })

@@ -4,6 +4,8 @@ import Back from "../../back";
 
 import Axios from 'axios'
 
+import {connect} from 'react-redux'
+
 class GoodListSub extends Component {
 
     state = {
@@ -12,10 +14,8 @@ class GoodListSub extends Component {
     }
 
     componentDidMount() {
-
         const id = this.props.match.params.id;
         Axios.get('http://47.100.98.54:9019/api/detail/' + id).then((res) => {
-            console.log(res.data);
             this.setState({
                 list: res.data,
                 product: res.data.product
@@ -25,9 +25,6 @@ class GoodListSub extends Component {
     }
 
     getMonthSale = () => {
-
-        console.log(this.state.product);
-
         let arr_count = []
         let list = this.state.product
         list.map((item, index) => {
@@ -54,6 +51,7 @@ class GoodListSub extends Component {
 
 
     render() {
+        console.log('count = ',this.props.count);
         return (
             <div className={'shopList'}>
                 <Back/>
@@ -93,7 +91,7 @@ class GoodListSub extends Component {
                                         {
                                             item.list.map((item, index) => {
                                                 return (
-                                                    <li>
+                                                    <li key={index}>
                                                         <div className={'foodImg'}>
                                                             <img src={item.img} alt=""/>
                                                         </div>
@@ -112,10 +110,14 @@ class GoodListSub extends Component {
                                                                 <div className={'money'}>￥{item.foodprice}</div>
                                                                 <div className={'addRemove'}>
                                                                     <span
-                                                                        className={'remove iconfont icon-jianshao1'}></span>
-                                                                    <span className={'num'}>2</span>
+                                                                        className={'remove iconfont icon-jianshao1'}
+                                                                        onClick={(val)=>{return this.props.reduceCount(1)}}
+                                                                    ></span>
+                                                                    <span className={'num'}>{this.props.count}</span>
                                                                     <span
-                                                                        className={'add iconfont icon-xinzeng'}></span>
+                                                                        className={'add iconfont icon-xinzeng'}
+                                                                        onClick={(val)=>{return this.props.addCount(1)}}
+                                                                    ></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -130,31 +132,31 @@ class GoodListSub extends Component {
 
 
                         {/*<ul>*/}
-                            {/*<li>*/}
-                                {/*<div className={'foodImg'}>*/}
-                                    {/*<img src={require('./img/1.jpeg')} alt=""/>*/}
-                                {/*</div>*/}
-                                {/*<div className={'foodInfo'}>*/}
-                                    {/*<div>*/}
-                                        {/*<h2 className={'title'}>招牌大鸡腿</h2>*/}
-                                        {/*<p className={'material'}>*/}
-                                            {/*主要原料：鸡腿*/}
-                                        {/*</p>*/}
-                                        {/*<p className={'niceRemark'}>*/}
-                                            {/*<span>月售19324份</span>*/}
-                                            {/*<span>好评99%</span>*/}
-                                        {/*</p>*/}
-                                    {/*</div>*/}
-                                    {/*<div className={'price'}>*/}
-                                        {/*<div className={'money'}>￥12</div>*/}
-                                        {/*<div className={'addRemove'}>*/}
-                                            {/*<span className={'remove iconfont icon-jianshao1'}></span>*/}
-                                            {/*<span className={'num'}>2</span>*/}
-                                            {/*<span className={'add iconfont icon-xinzeng'}></span>*/}
-                                        {/*</div>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-                            {/*</li>*/}
+                        {/*<li>*/}
+                        {/*<div className={'foodImg'}>*/}
+                        {/*<img src={require('./img/1.jpeg')} alt=""/>*/}
+                        {/*</div>*/}
+                        {/*<div className={'foodInfo'}>*/}
+                        {/*<div>*/}
+                        {/*<h2 className={'title'}>招牌大鸡腿</h2>*/}
+                        {/*<p className={'material'}>*/}
+                        {/*主要原料：鸡腿*/}
+                        {/*</p>*/}
+                        {/*<p className={'niceRemark'}>*/}
+                        {/*<span>月售19324份</span>*/}
+                        {/*<span>好评99%</span>*/}
+                        {/*</p>*/}
+                        {/*</div>*/}
+                        {/*<div className={'price'}>*/}
+                        {/*<div className={'money'}>￥12</div>*/}
+                        {/*<div className={'addRemove'}>*/}
+                        {/*<span className={'remove iconfont icon-jianshao1'}></span>*/}
+                        {/*<span className={'num'}>2</span>*/}
+                        {/*<span className={'add iconfont icon-xinzeng'}></span>*/}
+                        {/*</div>*/}
+                        {/*</div>*/}
+                        {/*</div>*/}
+                        {/*</li>*/}
                         {/*</ul>*/}
                     </div>
                 </div>
@@ -174,4 +176,25 @@ class GoodListSub extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+       count: state.cartCount.count
+    }
+}
+const mapDispatchToProps = {
+    addCount: (param) => {
+            return {
+                type:"ADD",
+                count:param
+            }
+        },
+    reduceCount:(param)=>{
+        return{
+            type:"REDUCE",
+            count: param
+        }
+    }
+}
+
+GoodListSub = connect(mapStateToProps,mapDispatchToProps)(GoodListSub)
 export default GoodListSub;
