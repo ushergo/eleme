@@ -42,7 +42,6 @@ class Home extends Component {
                     is_loading: false
                 })
             },2000)
-
             this.setState({
                 list: this.state.list.concat(res.data.data)
             })
