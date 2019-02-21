@@ -9,7 +9,9 @@ import Axios from 'axios';
 class CategoryList extends Component {
     state={
         list:[],
-        cate: ['美食','甜品饮品','商超便利','预定早餐','果蔬生鲜','新店特惠','准时达','晚餐','汉堡薯条','包子粥店','鲜花蛋糕','麻辣烫','川香菜','披萨意面','异国料理']
+        cate: ['美食','甜品饮品','商超便利','预定早餐','果蔬生鲜','新店特惠','准时达','晚餐','汉堡薯条','包子粥店','鲜花蛋糕','麻辣烫','川香菜','披萨意面','异国料理'],
+        is_loading:false
+
     }
     componentDidMount() {
         const id = this.props.match.params.id;
@@ -29,8 +31,18 @@ class CategoryList extends Component {
     }
 
     loadMore= ()=>{
+        if(this.state.is_loading)
+            return
+        this.setState({
+            is_loading: true
+        })
+
         Axios.get('http://47.100.98.54:9019/api/category/list'+this.props.match.params.id).then((res)=>{
-            console.log(res.data.data)
+            setTimeout(()=>{
+                this.setState({
+                    is_loading: false
+                })
+            },2000)
             this.setState({
                 list:this.state.list.concat(res.data.data)
             })

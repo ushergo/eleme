@@ -15,7 +15,8 @@ import Axios from "axios";
 class Home extends Component {
 
     state = {
-        list: []
+        list: [],
+        is_loading:false
     }
 
     componentDidMount() {
@@ -28,8 +29,20 @@ class Home extends Component {
     }
 
     loadMoreFn = () => {
+
+        if(this.state.is_loading)
+            return
+        this.setState({
+            is_loading: true
+        })
+
         Axios.get('http://47.100.98.54:9019/api/shoplist').then((res) => {
-            console.log(res.data.data)
+            setTimeout(()=>{
+                this.setState({
+                    is_loading: false
+                })
+            },2000)
+
             this.setState({
                 list: this.state.list.concat(res.data.data)
             })
